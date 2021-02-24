@@ -2,8 +2,8 @@
 # CRAN Task Views
 
 -   [Official CRAN Task Views](https://cran.r-project.org/web/views/)
--   [Shiny
-    Application](https://jimbrigapps.shinyapps.io/task-views-app/)
+-   [Shiny Application](https://jimbrigapps.shinyapps.io/task-views-app/)
+-   [Documentation]()
 
 ## Task Views
 
