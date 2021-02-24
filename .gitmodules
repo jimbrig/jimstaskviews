@@ -1,0 +1,57 @@
+[submodule "package-development"]
+	path = package-development
+	url = git@github.com:ropensci/PackageDevelopment.git
+[submodule "webservices"]
+	path = webservices
+	url = git@github.com:ropensci/webservices.git
+[submodule "finance"]
+	path = finance
+	url = git@github.com:eddelbuettel/ctv-finance.git
+[submodule "maptools"]
+	path = maptools
+	url = git@github.com:ropensci/maptools.git
+[submodule "high-performace-computing"]
+	path = high-performace-computing
+	url = git@github.com:eddelbuettel/ctv-hpc.git
+[submodule "taxonomy"]
+	path = taxonomy
+	url = git@github.com:ropensci/taxonomy.git
+[submodule "databases"]
+	path = databases
+	url = git@github.com:terrytangyuan/ctv-databases.git
+[submodule "model-deployments"]
+	path = model-deployments
+	url = git@github.com:terrytangyuan/ctv-model-deployment.git
+[submodule "reproducible-research"]
+	path = reproducible-research
+	url = git@github.com:jdblischak/reproducible-research-ctv.git
+[submodule "anamoly-detection"]
+	path = anamoly-detection
+	url = git@github.com:pridiltal/ctv-AnomalyDetection.git
+[submodule "security"]
+	path = security
+	url = git@github.com:hrbrmstr/ctvsecurity.git
+[submodule "timeseries"]
+	path = timeseries
+	url = git@github.com:robjhyndman/ctv-TimeSeries.git
+[submodule "optimization"]
+	path = optimization
+	url = git@github.com:hwborchers/ctv-optimization.git
+[submodule "graphics"]
+	path = graphics
+	url = git@github.com:sctyner/ctv-graphics.git
+[submodule "ctv"]
+	path = ctv
+	url = git@github.com:cran/ctv.git
+[submodule "numerical-math"]
+	path = numerical-math
+	url = git@github.com:hwborchers/ctv-numericalmath.git
+[submodule "opendata"]
+	path = opendata
+	url = git@github.com:ropensci/opendata.git
+[submodule "hydrology"]
+	path = hydrology
+	url = git@github.com:ropensci/Hydrology.git
+[submodule "computational-environments"]
+	path = computational-environments
+	url = git@github.com:o2r-project/ctv-computational-environments.git

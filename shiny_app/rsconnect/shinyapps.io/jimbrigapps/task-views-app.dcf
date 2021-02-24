@@ -1,0 +1,13 @@
+name: task-views-app
+title: task-views-app
+username:
+account: jimbrigapps
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 3688055
+bundleId: 4264069
+url: https://jimbrigapps.shinyapps.io/task-views-app/
+when: 1614127767.7525
+asMultiple: FALSE
+asStatic: FALSE
+ignoredFiles: package_data.R
