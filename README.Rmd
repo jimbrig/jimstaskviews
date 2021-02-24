@@ -1,0 +1,164 @@
+---
+output: github_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, comment = "", warning = FALSE, error = FALSE, message = FALSE)
+```
+
+# CRAN Task Views
+
+## Task Views
+
+- [Package Development](package-development/) 
+- [Webservices](webservices/) 
+- [Finance](finance/) 
+- [Mapping Tools](maptools/) 
+- [High Performance Computing](hpc/) 
+- [Taxonomy](taxonomy/) 
+- [Databases](databases/) 
+- [Model Deployment](model-deployment/) 
+- [Reproducible Research](reproducible-research/) 
+- [Anamaly Detection](anamoly-detection/) 
+- [Security](security/) 
+- [Time-Series](timeseries/) 
+- [Optimization](optimization/) 
+- [Graphics](graphics/) 
+- [Numerical Math](numerical-math/) 
+- [Open Data](opendata/) 
+- [Hydrology](hydrology/) 
+- [Computational environments](computational-environments/) 
+
+Additionally, I included the `ctv` R package.
+
+## Shiny App
+
+There is also an exploratory [Shiny App](shiny_app/) that van be viewed at <https://jimbrigapps.shinyapps.io/task-views-app/>
+
+Quickly browse packages and their licenses using a snapshot of task views
+retrieved on 2020-02-28.
+
+*Not all packages available on CRAN are shown here, just the ones in CRAN's [Task Views](https://cran.r-project.org/web/views/).*
+
+R packages used in the creation of this app include: 
+
+- [ctv](https://cran.r-project.org/package=ctv) for getting the list of packages in each task view  
+
+- [purrr](https://cran.r-project.org/package=purrr) data manipulation 
+
+- [dplyr](https://cran.r-project.org/package=dplyr) for manipulating the acquired data 
+
+- [crandb](https://github.com/metacran/crandb) for obtaining licensing and other details for each package 
+
+- [shiny](https://cran.r-project.org/package=shiny), [shinythemes](https://cran.r-project.org/package=shinythemes) 
+
+- [DT](https://cran.r-project.org/package=DT) 
+
+This project is **not** affiliated with [The Comprehensive R Archive Network](https://cran.r-project.org/) or [The R Foundation](https://www.r-project.org/).
+
+## Techinical Details and Code
+
+Repo's are added via `submodules`:
+
+```{bash, eval=FALSE}
+git init
+
+git submodule add git@github.com:ropensci/PackageDevelopment.git package-development
+git submodule add git@github.com:ropensci/webservices.git
+git submodule add git@github.com:eddelbuettel/ctv-finance.git finance
+git submodule add git@github.com:ropensci/maptools.git
+git submodule add git@github.com:eddelbuettel/ctv-hpc.git "high-performace-computing"
+git submodule add git@github.com:ropensci/taxonomy.git
+git submodule add git@github.com:terrytangyuan/ctv-databases.git "databases"
+git submodule add git@github.com:terrytangyuan/ctv-model-deployment.git "model-deployments"
+git submodule add git@github.com:jdblischak/reproducible-research-ctv.git "reproducible-research"
+git submodule add git@github.com:pridiltal/ctv-AnomalyDetection.git "anamoly-detection"
+git submodule add git@github.com:hrbrmstr/ctvsecurity.git "security"
+git submodule add git@github.com:robjhyndman/ctv-TimeSeries.git "timeseries"
+git submodule add git@github.com:hwborchers/ctv-optimization.git "optimization"
+git submodule add git@github.com:sctyner/ctv-graphics.git "graphics"
+git submodule add git@github.com:cran/ctv.git
+git submodule add git@github.com:hwborchers/ctv-numericalmath.git "numerical-math"
+git submodule add git@github.com:ropensci/opendata.git opendata
+git submodule add git@github.com:ropensci/Hydrology.git hydrology
+git submodule add git@github.com:o2r-project/ctv-computational-environments.git computational-environments
+git submodule add git@github.com:r-spatial/task_views.git "spacial-and-temporal-spatial"
+
+exit
+```
+
+The remaining task views are taken from CRAN and placed into the [data](data/) folder.
+
+- NOTE: I use pandoc to convert between HTML and Markdown here.
+
+```{r, eval=FALSE, include=TRUE}
+remaining <- c(
+  "Distributions",
+  "Bayesian",
+  "Econometrics",
+  "Environmetrics",
+  "ExperimentalDesign",
+  "ExtremeValue",
+  "FunctionalData",
+  "MachineLearning",
+  "MetaAnalysis",
+  "Multivariate",
+  "NaturalLanguageProcessing",
+  "OfficialStatistics",
+  "Robust",
+  "SocialSciences",
+  "Spatial",
+  "SpatioTemporal",
+  "Survival",
+  "WebTechnologies"
+)
+
+ctvs <- purrr::map(remaining, function(x) {
+  read.ctv(system.file("ctv", paste0(x, ".ctv"), package = "ctv"))
+}) %>% setNames(remaining)
+
+purrr::walk2(
+  ctvs, 
+  names(ctvs), 
+  ~ctv::ctv2html(x = .x, file = fs::path("data/html", paste0(.y, ".html")))
+)
+
+fs::dir_create("data/md")
+
+purrr::walk(basename(fs::dir_ls("data/html")), function(x) {
+  cmd <- paste0("pandoc -o 'data/md/", fs::path_ext_remove(x), ".md' ", x)
+  cmd
+  system(cmd)
+})
+```
+
+To get all CTVs:
+
+```{r, eval=TRUE, results='markup', include=TRUE}
+library(ctv)
+
+cdir <- system.file("ctv", package = "ctv")
+ctvs <- list.files(cdir, pattern = "\\.ctv$")
+
+rr <- sapply(ctvs,
+             function(ctv) {
+               cat(sprintf("%25s  ", ctv))
+               R <- read.ctv(file.path(cdir, ctv))
+               cat("\n")
+               R
+             },
+             simplify = FALSE)
+```
+
+and for more details, including the packages help within the CTVs:
+
+```{r, results='markup', eval=TRUE}
+for (n in names(rr)) {
+  cat(n, " :\n", rep.int("=", nchar(n)), "\n", sep = '')
+  knitr::knit_print(rr[[n]])
+  cat("--------------------------------------------------------\n")
+}
+```
+
+
+

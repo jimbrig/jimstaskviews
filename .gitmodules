@@ -55,3 +55,6 @@
 [submodule "computational-environments"]
 	path = computational-environments
 	url = git@github.com:o2r-project/ctv-computational-environments.git
+[submodule "spacial-and-temporal-spatial"]
+	path = spacial-and-temporal-spatial
+	url = git@github.com:r-spatial/task_views.git
