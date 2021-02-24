@@ -1,6 +1,10 @@
 
 # CRAN Task Views
 
+-   [Official CRAN Task Views](https://cran.r-project.org/web/views/)
+-   [Shiny
+    Application](https://jimbrigapps.shinyapps.io/task-views-app/)
+
 ## Task Views
 
 -   [Package Development](package-development/)
@@ -35,31 +39,11 @@ views retrieved on 2020-02-28.
 *Not all packages available on CRAN are shown here, just the ones in
 CRAN’s [Task Views](https://cran.r-project.org/web/views/).*
 
-R packages used in the creation of this app include:
-
--   [ctv](https://cran.r-project.org/package=ctv) for getting the list
-    of packages in each task view
-
--   [purrr](https://cran.r-project.org/package=purrr) data manipulation
-
--   [dplyr](https://cran.r-project.org/package=dplyr) for manipulating
-    the acquired data
-
--   [crandb](https://github.com/metacran/crandb) for obtaining licensing
-    and other details for each package
-
--   [shiny](https://cran.r-project.org/package=shiny),
-    [shinythemes](https://cran.r-project.org/package=shinythemes)
-
--   [DT](https://cran.r-project.org/package=DT)
-
-This project is **not** affiliated with [The Comprehensive R Archive
-Network](https://cran.r-project.org/) or [The R
-Foundation](https://www.r-project.org/).
-
 ## Techinical Details and Code
 
-Repo’s are added via `submodules`:
+Repo’s are added via [git
+submodules](https://git-scm.com/book/en/v2/Git-Tools-Submodules); see
+the `.gitattributes` file for details.
 
 ``` bash
 git init
@@ -87,6 +71,17 @@ git submodule add git@github.com:r-spatial/task_views.git "spacial-and-temporal-
 
 exit
 ```
+
+In order to stay up-to-date utilize the `update_submods.sh` shell
+script:
+
+``` bash
+#!/bin/sh
+
+git submodule update --recursive
+```
+
+## Remaining CTVs not found on Github:
 
 The remaining task views are taken from CRAN and placed into the
 [data](data/) folder.
@@ -133,6 +128,49 @@ purrr::walk(basename(fs::dir_ls("data/html")), function(x) {
   system(cmd)
 })
 ```
+
+## Session Info
+
+``` r
+sessioninfo::session_info()
+```
+
+    - Session info ---------------------------------------------------------------
+     setting  value                       
+     version  R version 4.0.3 (2020-10-10)
+     os       Windows 10 x64              
+     system   x86_64, mingw32             
+     ui       RTerm                       
+     language en-US                       
+     collate  English_United States.1252  
+     ctype    English_United States.1252  
+     tz       America/New_York            
+     date     2021-02-23                  
+
+    - Packages -------------------------------------------------------------------
+     package     * version date       lib source        
+     assertthat    0.2.1   2019-03-21 [1] CRAN (R 4.1.0)
+     cli           2.3.1   2021-02-23 [1] CRAN (R 4.0.3)
+     digest        0.6.27  2020-10-24 [1] CRAN (R 4.0.3)
+     evaluate      0.14    2019-05-28 [1] CRAN (R 4.1.0)
+     fs            1.5.0   2020-07-31 [1] CRAN (R 4.0.3)
+     glue          1.4.2   2020-08-27 [1] CRAN (R 4.1.0)
+     htmltools     0.5.1.1 2021-01-22 [1] CRAN (R 4.1.0)
+     knitr         1.31    2021-01-27 [1] CRAN (R 4.1.0)
+     magrittr      2.0.1   2020-11-17 [1] CRAN (R 4.0.3)
+     rlang         0.4.10  2020-12-30 [1] CRAN (R 4.0.3)
+     rmarkdown     2.6     2020-12-14 [1] CRAN (R 4.0.3)
+     sessioninfo   1.1.1   2018-11-05 [1] CRAN (R 4.0.3)
+     stringi       1.5.3   2020-09-09 [1] CRAN (R 4.0.3)
+     stringr       1.4.0   2019-02-10 [1] CRAN (R 4.0.3)
+     withr         2.4.1   2021-01-26 [1] CRAN (R 4.1.0)
+     xfun          0.21    2021-02-10 [1] CRAN (R 4.1.0)
+     yaml          2.2.1   2020-02-01 [1] CRAN (R 4.0.3)
+
+    [1] C:/Users/Jimmy Briggs/.R/lib/4.0
+    [2] C:/Program Files/R/R-4.0.3/library
+
+## ALL Task Views Detailed Information
 
 To get all CTVs:
 
@@ -189,7 +227,7 @@ rr <- sapply(ctvs,
                TimeSeries.ctv  
           WebTechnologies.ctv  
 
-and for more details, including the packages help within the CTVs:
+and for more details, including the packages within the CTVs:
 
 ``` r
 for (n in names(rr)) {

@@ -8,6 +8,9 @@ knitr::opts_chunk$set(echo = TRUE, comment = "", warning = FALSE, error = FALSE,
 
 # CRAN Task Views
 
+- [Official CRAN Task Views](https://cran.r-project.org/web/views/) 
+- [Shiny Application](https://jimbrigapps.shinyapps.io/task-views-app/) 
+
 ## Task Views
 
 - [Package Development](package-development/) 
@@ -40,25 +43,10 @@ retrieved on 2020-02-28.
 
 *Not all packages available on CRAN are shown here, just the ones in CRAN's [Task Views](https://cran.r-project.org/web/views/).*
 
-R packages used in the creation of this app include: 
-
-- [ctv](https://cran.r-project.org/package=ctv) for getting the list of packages in each task view  
-
-- [purrr](https://cran.r-project.org/package=purrr) data manipulation 
-
-- [dplyr](https://cran.r-project.org/package=dplyr) for manipulating the acquired data 
-
-- [crandb](https://github.com/metacran/crandb) for obtaining licensing and other details for each package 
-
-- [shiny](https://cran.r-project.org/package=shiny), [shinythemes](https://cran.r-project.org/package=shinythemes) 
-
-- [DT](https://cran.r-project.org/package=DT) 
-
-This project is **not** affiliated with [The Comprehensive R Archive Network](https://cran.r-project.org/) or [The R Foundation](https://www.r-project.org/).
-
 ## Techinical Details and Code
 
-Repo's are added via `submodules`:
+Repo's are added via [git submodules](https://git-scm.com/book/en/v2/Git-Tools-Submodules); 
+see the `.gitattributes` file for details.
 
 ```{bash, eval=FALSE}
 git init
@@ -86,6 +74,16 @@ git submodule add git@github.com:r-spatial/task_views.git "spacial-and-temporal-
 
 exit
 ```
+
+In order to stay up-to-date utilize the `update_submods.sh` shell script:
+
+```{bash, eval=FALSE}
+#!/bin/sh
+
+git submodule update --recursive
+```
+
+## Remaining CTVs not found on Github:
 
 The remaining task views are taken from CRAN and placed into the [data](data/) folder.
 
@@ -132,6 +130,14 @@ purrr::walk(basename(fs::dir_ls("data/html")), function(x) {
 })
 ```
 
+## Session Info
+
+```{r, results='markup', eval=TRUE, echo=TRUE}
+sessioninfo::session_info()
+```
+
+## ALL Task Views Detailed Information
+
 To get all CTVs:
 
 ```{r, eval=TRUE, results='markup', include=TRUE}
@@ -150,7 +156,7 @@ rr <- sapply(ctvs,
              simplify = FALSE)
 ```
 
-and for more details, including the packages help within the CTVs:
+and for more details, including the packages within the CTVs:
 
 ```{r, results='markup', eval=TRUE}
 for (n in names(rr)) {
@@ -159,6 +165,5 @@ for (n in names(rr)) {
   cat("--------------------------------------------------------\n")
 }
 ```
-
 
 
