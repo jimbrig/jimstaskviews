@@ -7,24 +7,26 @@
 
 ## Task Views
 
--   [Package Development](package-development/)
--   [Webservices](webservices/)
+⭐ = Favorite / Recommendation 
+
+-   [Package Development](package-development/) ⭐⭐
+-   [Webservices](webservices/) ⭐⭐
 -   [Finance](finance/)
--   [Mapping Tools](maptools/)
+-   [Mapping Tools](maptools/) ⭐
 -   [High Performance Computing](hpc/)
 -   [Taxonomy](taxonomy/)
--   [Databases](databases/)
+-   [Databases](databases/) ⭐
 -   [Model Deployment](model-deployment/)
--   [Reproducible Research](reproducible-research/)
+-   [Reproducible Research](reproducible-research/) ⭐
 -   [Anamaly Detection](anamoly-detection/)
 -   [Security](security/)
 -   [Time-Series](timeseries/)
--   [Optimization](optimization/)
+-   [Optimization](optimization/) ⭐
 -   [Graphics](graphics/)
 -   [Numerical Math](numerical-math/)
--   [Open Data](opendata/)
+-   [Open Data](opendata/) ⭐
 -   [Hydrology](hydrology/)
--   [Computational environments](computational-environments/)
+-   [Computational environments](computational-environments/) ⭐⭐
 
 Additionally, I included the `ctv` R package.
 
@@ -43,7 +45,7 @@ CRAN’s [Task Views](https://cran.r-project.org/web/views/).*
 
 Repo’s are added via [git
 submodules](https://git-scm.com/book/en/v2/Git-Tools-Submodules); see
-the `.gitattributes` file for details.
+the `.gitmodules` file for details.
 
 ``` bash
 git init
